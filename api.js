@@ -1,7 +1,7 @@
 'use strict';
 const path = require('path');
 const fs = require('fs');
-const mimer = require('mimer');
+const mime = require('mime-types');
 const getDimensions = require('image-size');
 const uri = require('./template/uri');
 const css = require('./template/css');
@@ -25,7 +25,7 @@ class Api extends Stream {
 
   createMetadata(fileName) {
     this.fileName = fileName;
-    this.mimetype = mimer(fileName);
+    this.mimetype = mime.lookup(fileName);
     this.content = uri(this);
 
     return this;
